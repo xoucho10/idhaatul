@@ -4,55 +4,58 @@ import { useState } from 'react';
 
 export default function Header(){
  const [open, setOpen] = useState(false);
- const waLink = 'https://wa.me/255707000000';
  return (
-  <div className="w-full sticky top-0 z-[999]">
-    <div className="bg-[#0e4d2e] text-white text-[11px] py-2 px-3 flex justify-between items-center">
+  <div style={{position:'sticky', top:0, zIndex:9999, width:'100%'}}>
+    {/* GREEN TOP BAR */}
+    <div style={{background:'#0e4d2e', color:'white', padding:'6px 12px', fontSize:'11px', display:'flex', justifyContent:'space-between'}}>
       <span>+255707000000 | info@idhaatulquran.or.tz</span>
-      <a href={waLink} target="_blank" className="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold">Chat on WhatsApp</a>
+      <a href="https://wa.me/255707000000" style={{background:'rgba(255,255,255,0.2)', padding:'2px 10px', borderRadius:'20px'}}>Chat on WhatsApp</a>
     </div>
-    <div className="bg-white border-b shadow-sm">
-      <div className="max-w-[1200px] mx-auto px-3 py-2.5 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-[46px] h-[46px] rounded-full bg-white border-2 border-[#0e4d2e] flex items-center justify-center overflow-hidden p-1">
-            <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
-          </div>
-          <div>
-            <h1 className="font-black text-[11px] leading-[11px] text-[#0e4d2e]">IDHAATUL<br/>QUR&apos;ANILKARIM</h1>
-            <p className="text-[9px] font-bold">Est. 1980</p>
-          </div>
-        </Link>
-        <div className="hidden lg:flex gap-5 text-[12px] font-bold">
-          <span className="text-[#b68c2a] border-b-2 border-[#d4af37]">Home</span>
-          <span>About</span><span>Programs</span><span>Admissions</span><span>Gallery</span>
+
+    {/* WHITE HEADER */}
+    <div style={{background:'white', borderBottom:'1px solid #ddd', padding:'10px 12px', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
+      <Link href="/" style={{display:'flex', alignItems:'center', gap:'8px', textDecoration:'none'}}>
+        <div style={{width:'46px', height:'46px', borderRadius:'50%', border:'2px solid #0e4d2e', overflow:'hidden', background:'white', padding:'2px'}}>
+          <img src="/logo.png" alt="Logo" style={{width:'100%', height:'100%', objectFit:'contain'}} />
         </div>
-        <div className="flex items-center gap-2">
-          <div className="hidden md:flex flex-col gap-1">
-            <a href={waLink} target="_blank" className="bg-[#fde6a8] border border-[#d4af37] text-[#0e4d2e] text-[10px] font-bold px-3 py-1.5 rounded text-center">Chat on WhatsApp</a>
-            <Link href="/admissions" className="bg-[#0e4d2e] text-white text-[10px] font-bold px-3 py-1.5 rounded text-center">Apply Now</Link>
-          </div>
-          <button type="button" onClick={()=>setOpen(!open)} className="lg:hidden w-[44px] h-[44px] bg-[#0e4d2e] text-white rounded-lg flex items-center justify-center text-[24px] font-black">
-            {open? 'X' : 'M'}
-          </button>
+        <div>
+          <div style={{fontWeight:900, fontSize:'12px', color:'#0e4d2e', lineHeight:'11px'}}>IDHAATUL QUR'ANILKARIM</div>
+          <div style={{fontSize:'9px', fontWeight:700}}>Est. 1980</div>
         </div>
+      </Link>
+
+      <div style={{display:'flex', gap:'8px', alignItems:'center'}}>
+        {/* DESKTOP ONLY BUTTONS */}
+        <div className="hidden md:flex" style={{flexDirection:'column', gap:'4px'}}>
+          <a href="https://wa.me/255707000000" style={{background:'#fde6a8', border:'1px solid #d4af37', color:'#0e4d2e', fontSize:'10px', fontWeight:800, padding:'6px 12px', borderRadius:'4px', textAlign:'center', textDecoration:'none'}}>Chat on WhatsApp</a>
+          <Link href="/admissions" style={{background:'#0e4d2e', color:'white', fontSize:'10px', fontWeight:800, padding:'6px 12px', borderRadius:'4px', textAlign:'center', textDecoration:'none'}}>Apply Now</Link>
+        </div>
+
+        {/* HAMBURGER - ALWAYS VISIBLE ON MOBILE - INLINE STYLE SO IT CAN'T HIDE */}
+        <button 
+          onClick={()=> setOpen(!open)}
+          style={{width:'44px', height:'44px', background:'#0e4d2e', color:'white', border:'none', borderRadius:'8px', fontSize:'24px', fontWeight:900, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center'}}
+        >
+          {open ? '✕' : '☰'}
+        </button>
       </div>
     </div>
+
+    {/* MOBILE MENU */}
     {open && (
-      <div className="lg:hidden fixed top-[88px] left-0 w-full h-[calc(100vh-88px)] bg-black/40 z-[998]" onClick={()=>setOpen(false)}>
-        <div className="bg-white w-full shadow-2xl border-t-2 border-[#0e4d2e]" onClick={e=>e.stopPropagation()}>
-          <div className="p-4 grid gap-2">
-            <Link href="/" onClick={()=>setOpen(false)} className="bg-[#fdf6e3] border border-[#d4af37] font-black py-3.5 px-4 rounded-xl">Home</Link>
-            <Link href="/about" onClick={()=>setOpen(false)} className="bg-gray-50 font-bold py-3.5 px-4 rounded-xl border">About Us</Link>
-            <Link href="/programs" onClick={()=>setOpen(false)} className="bg-gray-50 font-bold py-3.5 px-4 rounded-xl border">Programs</Link>
-            <Link href="/admissions" onClick={()=>setOpen(false)} className="bg-gray-50 font-bold py-3.5 px-4 rounded-xl border">Admissions</Link>
-            <Link href="/gallery" onClick={()=>setOpen(false)} className="bg-gray-50 font-bold py-3.5 px-4 rounded-xl border">Gallery</Link>
-            <Link href="/contact" onClick={()=>setOpen(false)} className="bg-gray-50 font-bold py-3.5 px-4 rounded-xl border">Contact</Link>
-            <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t">
-              <a href={waLink} target="_blank" className="bg-[#fde6a8] border-2 border-[#d4af37] font-black py-3.5 rounded-xl text-center text-[14px]">WhatsApp</a>
-              <Link href="/admissions" onClick={()=>setOpen(false)} className="bg-[#0e4d2e] text-white font-black py-3.5 rounded-xl text-center text-[14px]">Apply Now</Link>
-            </div>
-            <p className="text-center text-[11px] mt-2 font-bold text-[#0e4d2e]">+255707000000</p>
+      <div style={{position:'fixed', top:'88px', left:0, width:'100%', height:'calc(100vh - 88px)', background:'rgba(0,0,0,0.4)', zIndex:9998}} onClick={()=>setOpen(false)}>
+        <div style={{background:'white', width:'100%', padding:'16px', boxShadow:'0 10px 30px rgba(0,0,0,0.2)', borderTop:'3px solid #0e4d2e'}} onClick={e=>e.stopPropagation()}>
+          <Link href="/" onClick={()=>setOpen(false)} style={{display:'block', background:'#fdf6e3', border:'1px solid #d4af37', padding:'14px', borderRadius:'10px', fontWeight:900, marginBottom:'8px', textDecoration:'none', color:'#0e4d2e'}}>Home</Link>
+          <Link href="/about" onClick={()=>setOpen(false)} style={{display:'block', background:'#f5f5f5', padding:'14px', borderRadius:'10px', fontWeight:700, marginBottom:'8px', textDecoration:'none', color:'black', border:'1px solid #eee'}}>About Us</Link>
+          <Link href="/programs" onClick={()=>setOpen(false)} style={{display:'block', background:'#f5f5f5', padding:'14px', borderRadius:'10px', fontWeight:700, marginBottom:'8px', textDecoration:'none', color:'black', border:'1px solid #eee'}}>Programs</Link>
+          <Link href="/admissions" onClick={()=>setOpen(false)} style={{display:'block', background:'#f5f5f5', padding:'14px', borderRadius:'10px', fontWeight:700, marginBottom:'8px', textDecoration:'none', color:'black', border:'1px solid #eee'}}>Admissions</Link>
+          <Link href="/gallery" onClick={()=>setOpen(false)} style={{display:'block', background:'#f5f5f5', padding:'14px', borderRadius:'10px', fontWeight:700, marginBottom:'8px', textDecoration:'none', color:'black', border:'1px solid #eee'}}>Gallery</Link>
+          <Link href="/contact" onClick={()=>setOpen(false)} style={{display:'block', background:'#f5f5f5', padding:'14px', borderRadius:'10px', fontWeight:700, marginBottom:'8px', textDecoration:'none', color:'black', border:'1px solid #eee'}}>Contact</Link>
+          <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'12px', marginTop:'16px', paddingTop:'16px', borderTop:'1px solid #ddd'}}>
+            <a href="https://wa.me/255707000000" style={{background:'#fde6a8', border:'2px solid #d4af37', padding:'14px', borderRadius:'12px', textAlign:'center', fontWeight:900, textDecoration:'none', color:'#0e4d2e'}}>WhatsApp</a>
+            <Link href="/admissions" onClick={()=>setOpen(false)} style={{background:'#0e4d2e', color:'white', padding:'14px', borderRadius:'12px', textAlign:'center', fontWeight:900, textDecoration:'none'}}>Apply Now</Link>
           </div>
+          <div style={{textAlign:'center', marginTop:'12px', fontSize:'11px', fontWeight:800, color:'#0e4d2e'}}>+255707000000</div>
         </div>
       </div>
     )}
