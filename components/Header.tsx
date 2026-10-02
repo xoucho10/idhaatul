@@ -1,44 +1,71 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+
 export default function Header(){
  const [open, setOpen] = useState(false);
- const NUM = '+25570000000';
- const WA = 'https://wa.me/25570000000';
- useEffect(()=>{ document.body.style.overflow = open ? 'hidden' : ''; },[open]);
+ const links = [
+  { name:'Home', href:'/' },
+  { name:'About', href:'/about' },
+  { name:'Programs', href:'/programs' },
+  { name:'Admissions', href:'/admissions' },
+  { name:'Gallery', href:'/gallery' },
+  { name:'Donate', href:'/donate' },
+  { name:'Contact', href:'/contact' },
+ ];
+ useEffect(()=>{ document.body.style.overflow = open? 'hidden' : ''; },[open]);
+
  return (
-  <header style={{position:'sticky', top:0, zIndex:99999, width:'100%'}}>
-    <div style={{background:'#0e4d2e', color:'#fff', padding:'8px 12px', fontSize:'11px', display:'flex', justifyContent:'space-between', flexWrap:'wrap'}}>
-      <span>📞 {NUM} • info@idhaatulquran.or.tz</span>
-      <a href={WA} target="_blank" style={{background:'#ffffff22', color:'#fff', padding:'4px 12px', borderRadius:'20px', textDecoration:'none', fontWeight:700}}>Chat on WhatsApp</a>
+  <header style={{position:'sticky', top:0, zIndex:99999, width:'100%', background:'#fff'}}>
+    <style>{`
+    .nav-links { display: none; gap: 20px; font-size:13.5px; font-weight:800; align-items:center; flex-wrap:wrap; }
+    .hamburger { display: flex; }
+      @media(min-width: 1024px){
+      .nav-links { display: flex!important; }
+      .hamburger { display: none!important; }
+      }
+    `}</style>
+
+    {/* GREEN TOP BAR */}
+    <div style={{background:'#0e4d2e', color:'#fff', padding:'9px 16px', fontSize:'12.5px', display:'flex', justifyContent:'center', gap:'24px', flexWrap:'wrap', fontWeight:500}}>
+      <span>📞 +25570000000</span>
+      <span>✉️ info@idhaatulquran.or.tz</span>
+      <span>📍 Dar es Salaam, Tanzania</span>
     </div>
-    <div style={{background:'#fff', borderBottom:'3px solid #d4af37', padding:'10px 12px', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-      <Link href="/" style={{display:'flex', gap:'10px', alignItems:'center', textDecoration:'none'}}>
-        <div style={{width:'48px', height:'48px', borderRadius:'50%', border:'2px solid #0e4d2e', overflow:'hidden', padding:'2px'}}><img src="/logo.png" alt="logo" style={{width:'100%', height:'100%', objectFit:'contain'}}/></div>
-        <div><div style={{fontWeight:900, fontSize:'12px', color:'#0e4d2e'}}>IDHAATUL QUR'ANILKARIM</div><div style={{fontSize:'9px', fontWeight:700}}>Est. 1980</div></div>
-      </Link>
-      <div style={{display:'flex', gap:'8px', alignItems:'center'}}>
-        <div className="hidden md:flex" style={{flexDirection:'column', gap:'4px'}}>
-          <a href={WA} style={{background:'#fde6a8', border:'1px solid #d4af37', padding:'6px 12px', borderRadius:'6px', fontSize:'11px', fontWeight:800, textAlign:'center', textDecoration:'none', color:'#0e4d2e'}}>Chat on WhatsApp</a>
-          <Link href="/admissions" style={{background:'#0e4d2e', color:'#fff', padding:'6px 12px', borderRadius:'6px', fontSize:'11px', fontWeight:800, textAlign:'center', textDecoration:'none'}}>Apply Now</Link>
+
+    {/* WHITE HEADER - NAVBAR MENUS BACK */}
+    <div style={{borderBottom:'3px solid #d4af37', padding:'12px 20px', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+      <Link href="/" style={{display:'flex', gap:'12px', alignItems:'center', textDecoration:'none', flexShrink:0}}>
+        <div style={{width:'52px', height:'52px', borderRadius:'50%', border:'2px solid #0e4d2e', overflow:'hidden', padding:'2px', background:'#fff', position:'relative', flexShrink:0}}>
+          <Image src="/logo.png" alt="logo" width={52} height={52} style={{objectFit:'contain'}} sizes="52px" />
         </div>
-        <button onClick={()=>setOpen(!open)} style={{width:'48px', height:'48px', background:'#0e4d2e', color:'#fff', border:'none', borderRadius:'10px', fontSize:'26px', fontWeight:900, cursor:'pointer'}}>{open ? '✕' : '☰'}</button>
+        <div><div style={{fontWeight:900, fontSize:'16px', color:'#0e4d2e', lineHeight:'16px'}}>IDHAATUL QUR'ANILKARIM</div><div style={{fontSize:'11px', fontWeight:800, color:'#000'}}>Est. 1980</div></div>
+      </Link>
+
+      <div style={{display:'flex', alignItems:'center', gap:'28px'}}>
+        {/* ALL NAVBAR MENUS BACK - DESKTOP VISIBLE */}
+        <nav className="nav-links">
+          {links.map(l=>(
+            <Link key={l.name} href={l.href} style={{textDecoration:'none', color: l.name==='Home'? '#b68c2a' : '#0e4d2e', borderBottom: l.name==='Home'? '2px solid #d4af37' : 'none', paddingBottom:'3px'}}>{l.name}</Link>
+          ))}
+        </nav>
+
+        {/* APPLY NOW - SHIFTED FROM EDGE, NO CHAT BUTTON */}
+        <Link href="/admissions" style={{background:'#0e4d2e', color:'#fff', padding:'10px 24px', borderRadius:'8px', fontSize:'13px', fontWeight:800, textDecoration:'none', whiteSpace:'nowrap', marginRight:'12px', boxShadow:'0 2px 8px rgba(0,0,0,0.15)'}}>Apply Now</Link>
+
+        <button onClick={()=>setOpen(!open)} className="hamburger" style={{width:'46px', height:'46px', background:'#0e4d2e', color:'#fff', border:'none', borderRadius:'10px', fontSize:'24px', fontWeight:900, cursor:'pointer', alignItems:'center', justifyContent:'center'}}>{open?'✕':'☰'}</button>
       </div>
     </div>
+
+    {/* MOBILE - ALL MENUS BACK INSIDE HAMBURGER */}
     {open && (
-      <div style={{position:'fixed', top:'86px', left:0, width:'100%', height:'calc(100vh - 86px)', background:'rgba(0,0,0,0.5)', zIndex:99998}} onClick={()=>setOpen(false)}>
-        <div style={{background:'#fff', padding:'16px'}} onClick={e=>e.stopPropagation()}>
-          <Link href="/" onClick={()=>setOpen(false)} style={{display:'block', padding:'14px', marginBottom:'8px', background:'#fdf6e3', border:'1px solid #d4af37', borderRadius:'12px', fontWeight:900, textDecoration:'none', color:'#0e4d2e'}}>Home</Link>
-          <Link href="/about" onClick={()=>setOpen(false)} style={{display:'block', padding:'14px', marginBottom:'8px', background:'#f5f5f5', border:'1px solid #eee', borderRadius:'12px', fontWeight:700, textDecoration:'none', color:'#000'}}>About</Link>
-          <Link href="/programs" onClick={()=>setOpen(false)} style={{display:'block', padding:'14px', marginBottom:'8px', background:'#f5f5f5', border:'1px solid #eee', borderRadius:'12px', fontWeight:700, textDecoration:'none', color:'#000'}}>Programs</Link>
-          <Link href="/admissions" onClick={()=>setOpen(false)} style={{display:'block', padding:'14px', marginBottom:'8px', background:'#f5f5f5', border:'1px solid #eee', borderRadius:'12px', fontWeight:700, textDecoration:'none', color:'#000'}}>Admissions</Link>
-          <Link href="/gallery" onClick={()=>setOpen(false)} style={{display:'block', padding:'14px', marginBottom:'8px', background:'#f5f5f5', border:'1px solid #eee', borderRadius:'12px', fontWeight:700, textDecoration:'none', color:'#000'}}>Gallery</Link>
-          <Link href="/contact" onClick={()=>setOpen(false)} style={{display:'block', padding:'14px', marginBottom:'8px', background:'#f5f5f5', border:'1px solid #eee', borderRadius:'12px', fontWeight:700, textDecoration:'none', color:'#000'}}>Contact</Link>
-          <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'10px', marginTop:'16px', borderTop:'1px solid #eee', paddingTop:'16px'}}>
-            <a href={WA} style={{background:'#fde6a8', border:'2px solid #d4af37', padding:'14px', borderRadius:'12px', textAlign:'center', fontWeight:900, textDecoration:'none', color:'#0e4d2e'}}>WhatsApp</a>
-            <Link href="/admissions" onClick={()=>setOpen(false)} style={{background:'#0e4d2e', color:'#fff', padding:'14px', borderRadius:'12px', textAlign:'center', fontWeight:900, textDecoration:'none'}}>Apply Now</Link>
-          </div>
-          <div style={{textAlign:'center', marginTop:'12px', fontWeight:900, color:'#0e4d2e'}}>{NUM}</div>
+      <div style={{position:'fixed', top:'94px', left:0, width:'100%', height:'calc(100dvh - 94px)', background:'rgba(0,0,0,0.5)', zIndex:99998}} onClick={()=>setOpen(false)}>
+        <div style={{background:'#fff', padding:'16px', maxHeight:'90vh', overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
+          {links.map(l=>(
+            <Link key={l.name} href={l.href} onClick={()=>setOpen(false)} style={{display:'block', padding:'14px', marginBottom:'8px', background: l.name==='Home'?'#fdf6e3':'#f5f5f5', border:'1px solid #ddd', borderRadius:'12px', fontWeight:800, textDecoration:'none', color:'#111'}}>{l.name}</Link>
+          ))}
+          <Link href="/admissions" onClick={()=>setOpen(false)} style={{display:'block', background:'#0e4d2e', color:'#fff', padding:'14px', borderRadius:'12px', textAlign:'center', fontWeight:900, textDecoration:'none', marginTop:'12px'}}>Apply Now</Link>
         </div>
       </div>
     )}
