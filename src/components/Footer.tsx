@@ -20,7 +20,7 @@ export default function Footer(){
         <h4 className="text-[#d4af37] text-[12px] font-bold mb-2">Quick Links</h4>
         <p>Student Portal<br/>Timetable<br/>Fee Structure<br/>Policies<br/>FAQ<br/>Download Forms</p>
         <h4 className="text-[#d4af37] text-[12px] font-bold mt-3">Contact</h4>
-        <p className="text-[10px]">Phone: +255 624 123 456<br/>Email: info@idhaatulquran.or.tz<br/>WhatsApp: +255 624 123 456</p>
+        <p className="text-[10px]">Phone: +25570000000<br/>Email: info@idhaatulquran.or.tz<br/>WhatsApp: +25570000000</p>
       </div>
       <div className="text-[11px] leading-5">
         <h4 className="text-[#d4af37] text-[12px] font-bold mb-2">Address</h4>

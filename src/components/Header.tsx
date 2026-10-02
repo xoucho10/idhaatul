@@ -6,11 +6,11 @@ export default function Header(){
   <div className="w-full">
     <div className="bg-[#0e4d2e] text-white text-[11px] md:text-[12px] py-2 px-4 flex flex-wrap justify-center md:justify-between gap-2 md:gap-4">
       <div className="flex flex-wrap gap-4 items-center">
-        <span className="flex items-center gap-1.5"><span className="bg-[#d4af37] rounded-full w-5 h-5 grid place-items-center text-[#0e4d2e]">C</span> +255 624 123 456</span>
+        <span className="flex items-center gap-1.5"><span className="bg-[#d4af37] rounded-full w-5 h-5 grid place-items-center text-[#0e4d2e]">C</span> +25570000000</span>
         <span className="flex items-center gap-1.5"><span className="bg-[#d4af37] rounded-full w-5 h-5 grid place-items-center text-[#0e4d2e]">M</span> info@idhaatulquran.or.tz</span>
         <span className="flex items-center gap-1.5"><span className="bg-[#d4af37] rounded-full w-5 h-5 grid place-items-center text-[#0e4d2e]">L</span> Dar es Salaam, Tanzania</span>
       </div>
-      <a href="https://wa.me/255624123456" className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full"><span className="bg-[#25D366] w-4 h-4 rounded-full grid place-items-center">W</span> Chat on WhatsApp</a>
+      <a href="https://wa.me/25570000000" className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full"><span className="bg-[#25D366] w-4 h-4 rounded-full grid place-items-center">W</span> Chat on WhatsApp</a>
     </div>
 
     <div className="bg-white border-b">
@@ -26,7 +26,7 @@ export default function Header(){
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <a href="https://wa.me/255624123456" className="bg-[#fde6a8] border border-[#d4af37] text-[#0e4d2e] text-[11px] font-bold px-4 py-1.5 rounded text-center">Chat on WhatsApp</a>
+          <a href="https://wa.me/25570000000" className="bg-[#fde6a8] border border-[#d4af37] text-[#0e4d2e] text-[11px] font-bold px-4 py-1.5 rounded text-center">Chat on WhatsApp</a>
           <Link href="/admissions" className="bg-[#0e4d2e] text-white text-[11px] font-bold px-4 py-1.5 rounded text-center">Apply Now</Link>
         </div>
       </div>
