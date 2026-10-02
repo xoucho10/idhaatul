@@ -9,7 +9,7 @@ export default function Footer(){
         </div>
         <p className="text-[11px] opacity-60 mt-3 leading-5">Nurturing Huffaz & Islamic Scholars in Magomeni Kagera, Dar es Salaam.</p>
       </div>
-      <div className="text-[11px] leading-6"><h4 className="text-[#d4af37] font-bold mb-2">Contact</h4>+255 624 123 456<br/>info@idhaatulquran.or.tz<br/>Magomeni Kagera</div>
+      <div className="text-[11px] leading-6"><h4 className="text-[#d4af37] font-bold mb-2">Contact</h4>+255707000000<br/>info@idhaatulquran.or.tz<br/>Magomeni Kagera</div>
       <div className="text-[11px] leading-6"><h4 className="text-[#d4af37] font-bold mb-2">Quick Links</h4>Admissions<br/>Programs<br/>Gallery<br/>Donate</div>
       <div className="text-[11px] leading-6"><h4 className="text-[#d4af37] font-bold mb-2">Uniforms</h4>Boys: Light Blue Kanzu<br/>Girls: Brown Buibui<br/>Boarding Available</div>
     </div>
